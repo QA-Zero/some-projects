@@ -1,0 +1,29 @@
+.container {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .card {
+    width: 500px;
+    margin: 0 auto;
+    padding: 16px;
+}
+.container .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container .authBtn {
+    margin-top: 40px !important;
+    margin-bottom: -5px !important;
+    background-color: #ddc;
+}
+.container .authBtn:hover {
+    background-color: #aaa;
+    color: #00f;
+}

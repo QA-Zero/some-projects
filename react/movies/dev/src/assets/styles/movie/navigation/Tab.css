@@ -1,0 +1,14 @@
+a.tab {
+    display: block;
+    text-decoration: none;
+    float: left;
+    font-size: 14pt;
+    padding: 5px 7px;
+
+    background-color: #eee;
+    color: #222;
+}
+a.tab.active {
+    background-color: #999;
+    color: #fff;
+}

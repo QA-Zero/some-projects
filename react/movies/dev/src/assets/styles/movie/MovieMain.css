@@ -1,0 +1,24 @@
+.navigation {
+    width: 100%;
+    height: 50px;
+    background-color: #faa;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.foundContent {
+    width: 100%;
+    height: calc(100vh - 100px);
+    overflow: auto;
+    background-color: #eee;
+}
+.backBtnBlock {
+    width: 100%;
+    height: 50px;
+    background-color: #aaf;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

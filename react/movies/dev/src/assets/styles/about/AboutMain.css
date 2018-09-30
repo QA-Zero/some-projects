@@ -1,0 +1,13 @@
+.aboutContainer {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.aboutContainer .title {
+    font-size: 22pt;
+    font-weight: bold;
+    margin-bottom: 50px;
+}

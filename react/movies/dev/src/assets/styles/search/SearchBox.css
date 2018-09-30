@@ -1,0 +1,23 @@
+.sb-wrapper {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    background-color: #ddd !important;
+    z-index: 1;
+}
+.search-box {
+    width: 300px;
+    margin: 0 auto;
+    padding: 8px 16px;
+    background-color: #fff;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+.search-box .field {
+    font-size: 22pt;
+    text-decoration: none;
+}
+.search-box .searchBtn {
+    margin-left: 225px;
+}

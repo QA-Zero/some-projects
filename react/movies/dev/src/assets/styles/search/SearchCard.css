@@ -1,0 +1,36 @@
+img {
+    height: 278px;
+    width: 185px;
+    min-width: 200px;
+}
+a {
+    text-decoration-line: none;
+}
+.search-card {
+    width: 100%;
+    display: flex;
+    margin-bottom: 16px;
+}
+.search-card .info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    margin-left: 16px;
+    padding: 16px;
+    width: 100%;
+}
+.search-card .title {
+    font-weight: 500;
+    font-size: 18pt;
+}
+.search-card .actions {
+    padding: 8px;
+
+    display: flex;
+    justify-content: center;
+}
+.search-card .overview {
+    color: #ccc;
+    font-size: 14pt;
+}

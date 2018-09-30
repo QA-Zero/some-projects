@@ -1,0 +1,19 @@
+.container {
+    width: 100%;
+}
+.spinner {
+    margin: 24px auto;
+    display: block;
+}
+.searchCount,
+.voteAverage {
+    text-align: center;
+
+    color: #496;
+    font-size: 13pt;
+}
+.searchCount span,
+.voteAverage span {
+    color: #49f;
+    font-size: 15pt;
+}
