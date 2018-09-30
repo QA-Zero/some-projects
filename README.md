@@ -1,7 +1,7 @@
 Layouting:
-- [Bouncy](https://qa-zero.github.io/some-projects/tree/master/layouting/Bouncy/dist/)
-- [Creative-Digital](https://qa-zero.github.io/some-projects/tree/master/layouting/Creative-Digital/dist/)
-- [Exe-template](https://qa-zero.github.io/some-projects/tree/master/layouting/exe-template/dist/)
+- [Bouncy](https://qa-zero.github.io/some-projects/layouting/Bouncy/dist/)
+- [Creative-Digital](https://qa-zero.github.io/some-projects/layouting/Creative-Digital/dist/)
+- [Exe-template](https://qa-zero.github.io/some-projects/layouting/exe-template/dist/)
 
 
 Vanilla Js (codepen):
@@ -9,4 +9,4 @@ Vanilla Js (codepen):
 
 
 React:
-- [movies](https://qa-zero.github.io/some-projects/tree/master/react/movies/prod)
+- [movies](https://qa-zero.github.io/some-projects/react/movies/prod)
