@@ -1,7 +1,7 @@
 Layouting:
-- [Bouncy](https://qa-zero.github.io/some-projects/Layouting/Bouncy/dist/)
-- [Creative-Digital](https://qa-zero.github.io/some-projects/Layouting/Creative-Digital/dist/)
-- [Exe-template](https://qa-zero.github.io/some-projects/Layouting/exe-template/dist/)
+- [Bouncy](https://qa-zero.github.io/some-projects/layouting/Bouncy/dist/)
+- [Creative-Digital](https://qa-zero.github.io/some-projects/layouting/Creative-Digital/dist/)
+- [Exe-template](https://qa-zero.github.io/some-projects/layouting/exe-template/dist/)
 
 
 Vanilla Js (codepen):
