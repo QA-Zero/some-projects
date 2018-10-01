@@ -27,19 +27,6 @@ class SearchBox extends Component {
 		push(searchUrl);
 	};
 
-	constructor(props) {
-		super(props);
-
-		const { urlQuery, urlFull, saveSearchInfo } = this.props;
-		const userRequest = this.getReqFromUrlQuery(urlQuery);
-
-		this.state = {
-			userRequest: userRequest
-		};
-
-		saveSearchInfo(userRequest, urlFull);
-	}
-
 	getUrlByRequest = req => {
 		const getQueryByRequest = req => {
 			return '?name=' + encodeURIComponent(req);
@@ -71,6 +58,23 @@ class SearchBox extends Component {
 		return getUrlParam(urlQuery, 'name');
 	};
 
+	constructor(props) {
+		super(props);
+
+		const { urlQuery, urlFull, saveSearchInfo } = this.props;
+		const userRequest = this.getReqFromUrlQuery(urlQuery);
+
+		this.state = {
+			userRequest: userRequest
+		};
+
+		saveSearchInfo(userRequest, urlFull);
+	}
+
+	componentDidMount() {
+		this.searchField.focus();
+	}
+
 	render() {
 		const { userRequest } = this.state;
 
@@ -78,10 +82,11 @@ class SearchBox extends Component {
 			<Paper className="sb-wrapper">
 				<div className="search-box">
 					<TextField
+						fullWidth
 						className="field"
 						helperText="Search"
-						fullWidth
 						value={userRequest}
+						inputRef={el => this.searchField = el}
 						onChange={this.handleTextChange}
 						onKeyDown={this.handleKeyDown}
 					/>

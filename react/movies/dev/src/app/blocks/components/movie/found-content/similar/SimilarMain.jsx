@@ -13,24 +13,24 @@ class SimilarMain extends Component {
 	}
 
 	render() {
-		const { count, voteAverage } = this.props;
-		const style = {
-			count: {
-				marginTop: '5px',
-				marginBottom: '-10px'
+		const { count, votesInfo } = this.props;
+		const loaderParams = {
+			style: {
+				count: {
+					marginTop: '5px',
+					marginBottom: '-10px'
+				},
+				vote: {
+					marginTop: '10px',
+					marginBottom: '-10px'
+				}
 			},
-			vote: {
-				marginTop: '10px',
-				marginBottom: '-10px'
-			}
+			count,
+			votes: votesInfo
 		};
 
 		return (
-			<Loader
-				style={style}
-				count={count}
-				vote={voteAverage}
-			>
+			<Loader {...loaderParams} >
 				<SimilarGrid />
 			</Loader>
 		)

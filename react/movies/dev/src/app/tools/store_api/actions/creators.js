@@ -32,9 +32,9 @@ const getList = items => {
 			         id: item['id'],
 			      title: item['title'],
 			      descr: item['overview'],
-			voteAverage: item['voteAverage'],
-			    mainImg: item['posterPath']
-							? addInfo.posterPref + item['posterPath']
+			voteAverage: item['vote_average'],
+			    mainImg: item['poster_path']
+							? addInfo.posterPref + item['poster_path']
 							: addInfo.noPoster
 		});
 	}
@@ -44,11 +44,11 @@ const getList = items => {
 const getSingle = item => ({
 	  title: item['title'],
 	  descr: item['overview'],
-	mainImg: item['posterPath']
-				? addInfo.posterPref + item['posterPath']
+	mainImg: item['poster_path']
+				? addInfo.posterPref + item['poster_path']
 				: addInfo.noPoster,
-	  bdImg: item['backdropPath']
-				? addInfo.bdPref + item['backdropPath']
+	  bdImg: item['backdrop_path']
+				? addInfo.bdPref + item['backdrop_path']
 				: addInfo.noPoster
 });
 

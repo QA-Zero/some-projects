@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 	isLoading: getLoading(state),
 	    style: ownProps.style,
 	    count: ownProps.count,
-	     vote: ownProps.vote
+	    votes: ownProps.votes
 });
 const mapDispatchToProps = {};
 const connect = reactConnect(mapStateToProps, mapDispatchToProps);

@@ -13,7 +13,7 @@
     font-size: 13pt;
 }
 .searchCount span,
-.voteAverage span {
+.voteAverage .num {
     color: #49f;
     font-size: 15pt;
 }

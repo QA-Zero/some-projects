@@ -50,7 +50,7 @@ class SearchMain extends Component {
 	}
 
 	render() {
-		const { scroll, count, voteAverage } = this.props;
+		const { scroll, count, votesInfo } = this.props;
 		const { height } = this.state;
 		const scrollParams = {
 			history: {},
@@ -59,15 +59,19 @@ class SearchMain extends Component {
 				() => [0, scroll]
 			)
 		};
-		const style = {
-			count: {
-				marginTop: '107px',
-				marginBottom: '-105px'
+		const loaderParams = {
+			style: {
+				count: {
+					marginTop: '107px',
+					marginBottom: '-105px'
+				},
+				vote: {
+					marginTop: '105px',
+					marginBottom: '-105px'
+				}
 			},
-			vote: {
-				marginTop: '105px',
-				marginBottom: '-105px'
-			}
+			count,
+			votes: votesInfo
 		};
 
 		return (
@@ -77,11 +81,7 @@ class SearchMain extends Component {
 					style={height}
 				>
 					<SearchBox />
-					<Loader
-						style={style}
-						count={count}
-						vote={voteAverage}
-					>
+					<Loader {...loaderParams} >
 						<SearchGrid />
 					</Loader>
 				</div>

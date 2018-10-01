@@ -22,12 +22,20 @@ class CurrentMain extends Component {
 	}
 
 	render() {
+		const loaderParams = {
+			style: {
+				vote: {},
+				count: {}
+			},
+			count: 0,
+			votes: {
+				average: 0,
+				notVoted: 0
+			}
+		};
+
 		return (
-			<Loader
-				style={{ vote: {}, count: {} }}
-				count={0}
-				vote={0}
-			>
+			<Loader {...loaderParams} >
 				<BackdropContainer>
 					<MovieInfo />
 				</BackdropContainer>

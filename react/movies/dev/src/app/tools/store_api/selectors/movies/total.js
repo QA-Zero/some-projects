@@ -2,26 +2,36 @@ import { createSelector } from 'reselect';
 import { movies } from '../index.js';
 
 
-const getVoteAverage = data => createSelector(
+const getVotesInfo = data => createSelector(
 	data,
 	(movies, count) => {
-		if (count === 0) {
-			return 0;
-		}
-		else {
+		let average = 0;
+		let notVoted = 0;
+
+		if (count !== 0) {
 			const getRound = (value, numDigit) => {
 				const rounder = Math.pow(10, numDigit);
 				return Math.round(value * rounder) / rounder;
 			};
 			const result = movies.reduce(
 				(sum, movie) => {
-					return sum + movie.voteAverage
+					if (movie.voteAverage > 0) {
+						return sum + movie.voteAverage
+					}
+					else {
+						notVoted++;
+						return sum;
+					}
 				},
 				0
 			);
-
-			return getRound(result / count, 2);
+			average = getRound(
+				result / (count - notVoted),
+				2
+			);
 		}
+
+		return { average, notVoted };
 	}
 );
 
@@ -37,6 +47,6 @@ export const getSearchCount  = state => getSearchItems(state).length;
 export const getSimilarCount = state => getSimilarItems(state).length;
 export const getRecCount     = state => getRecItems(state).length;
 
-export const getSearchVoteAverage  = getVoteAverage([getSearchItems, getSearchCount]);
-export const getSimilarVoteAverage = getVoteAverage([getSimilarItems, getSimilarCount]);
-export const getRecVoteAverage     = getVoteAverage([getRecItems], getRecCount);
+export const getVotesSearch  = getVotesInfo([getSearchItems, getSearchCount]);
+export const getVotesSimilar = getVotesInfo([getSimilarItems, getSimilarCount]);
+export const getVotesRec     = getVotesInfo([getRecItems, getRecCount]);

@@ -11,17 +11,38 @@ const Progress = () => <CircularProgress
 	thickness={5}
 />;
 
-const Count = ({ style, count }) => <div
-	className="searchCount"
-	style={style}
->Found <span>{count}</span> films:</div>;
+const Count = ({ style, count }) => (
+	<div
+		className="searchCount"
+		style={style}
+	>Found <span>{count}</span> films:</div>
+);
 
-const Vote = ({ style, vote }) => <div
-	className="voteAverage"
-	style={style}
->Average vote: <span>{vote}</span></div>;
+const Vote = ({ style, average, notVoted }) => (
+	<div
+		className="voteAverage"
+		style={style}
+	>
+		Average vote: <span className="num">{average}</span>
+		{
+			notVoted === 0
+				? null
+				: <span> (not voted: <span className="num">{notVoted}</span>)</span>
+		}
+	</div>
+);
 
-const Loader = ({ children, style, isLoading, count, vote }) => {
+const Loader = ({ children, style, isLoading, count, votes }) => {
+	const countInfo = {
+		style: style.vote,
+		count: count
+	};
+	const voteInfo = {
+		   style: style.vote,
+		 average: votes.average,
+		notVoted: votes.notVoted
+	};
+
 	return (
 		<Fragment>
 			{
@@ -30,14 +51,14 @@ const Loader = ({ children, style, isLoading, count, vote }) => {
 					: <Fragment>
 						{
 							count === 0
-								? vote === 0
+								? votes.average === 0
 									? null
-									: <Vote style={style.vote} vote={vote} />
-								: vote === 0
-									? <Count style={style.count} count={count} />
+									: <Vote {...voteInfo} />
+								: votes.average === 0
+									? <Count {...countInfo} />
 									: <Fragment>
-										<Count style={style.count} count={count} />
-										<Vote style={style.vote} vote={vote} />
+										<Count {...countInfo} />
+										<Vote {...voteInfo} />
 									</Fragment>
 						}
 						{children}
