@@ -1,0 +1,11 @@
+.spinner-wrapper {
+    width: 850px;
+    height: 765px;
+    background-color: #bbb;
+    margin-bottom: 10px;
+}
+.spinner {
+    width: 500px !important;
+    height: 500px !important;
+    margin: 133px 175px;
+}

@@ -1,0 +1,25 @@
+.user {
+    width: 850px;
+    height: 145px;
+    padding: 10px 35px;
+    margin-bottom: 10px;
+    background-color: #bbb;
+    box-sizing: border-box;
+}
+img {
+    width: 125px;
+    height: 125px;
+    float: left;
+}
+.rightBlock {
+    width: 655px;
+    height: 125px;
+    margin-left: 125px;
+    padding: 10px 20px;
+    background-color: #ddf;
+    box-sizing: border-box;
+    font-size: 14pt;
+}
+.surname {
+    margin: 8px 0;
+}

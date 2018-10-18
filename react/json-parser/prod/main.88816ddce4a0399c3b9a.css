@@ -1,0 +1,12 @@
+.btn{background-color:#0080ff !important;color:#fff !important}.btn:hover{background-color:#00bfff !important;color:#000 !important}
+
+.spinner-wrapper{background-color:#bbb;height:765px;margin-bottom:10px;width:850px}.spinner{height:500px !important;margin:133px 175px;width:500px !important}
+
+.user{background-color:#bbb;box-sizing:border-box;height:145px;margin-bottom:10px;padding:10px 35px;width:850px}img{float:left;height:125px;width:125px}.rightBlock{background-color:#ddf;box-sizing:border-box;font-size:14pt;height:125px;margin-left:125px;padding:10px 20px;width:655px}.surname{margin:8px 0}
+
+.list{height:765px;margin-bottom:10px;width:850px}
+
+
+
+body{margin:0}#app{align-items:center;background-color:#eee;display:flex;flex-direction:column;height:100vh;justify-content:center}
+
