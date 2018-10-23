@@ -11,4 +11,4 @@ Vanilla Js (codepen):
 React:
 - [movies](https://qa-zero.github.io/some-projects/react/movies/prod/)
 - [json-parser](https://qa-zero.github.io/some-projects/react/json-parser/prod/)
-- [minesweeper](https://qa-zero.github.io/some-projects/react/minesweeper/prod/)
+- [minesweeper](https://qa-zero.github.io/some-projects/react/minesweeper1/prod/)
