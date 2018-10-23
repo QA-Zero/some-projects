@@ -1,0 +1,42 @@
+.gamePage {
+	padding: 30px;
+}
+.rules {
+	font-size: 17pt;
+	font-style: italic;
+	margin-bottom: 70px;
+	text-align: center;
+	color: #e5a;
+}
+.game {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center
+}
+.controls {
+	margin-top: 70px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center
+}
+.restartBtn {
+	background-color: #0080ff !important;
+	color: #fff !important;
+}
+.restartBtn:hover {
+	background-color: #00bfff !important;
+	color: #000 !important;
+}
+.newParamsBtn {
+	background-color: #ff8000 !important;
+	color: #fff !important;
+
+	margin-left: 20px !important;
+}
+.newParamsBtn:hover {
+	background-color: #ffbf00 !important;
+	color: #000 !important;
+}

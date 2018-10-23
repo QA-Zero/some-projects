@@ -1,0 +1,30 @@
+.options {
+    margin-top: 10px;
+}
+.startBtn {
+    margin-top: 20px !important;
+    background-color: #aae !important;
+}
+.startBtn:hover {
+    background-color: #aea !important;
+}
+.block {
+    width: 50px;
+    float: left;
+}
+.cols {
+    margin-left: 65px;
+    margin-right: 60px;
+}
+.label {
+    text-align: center;
+}
+.rows .rg {
+    padding-left: 4px;
+}
+.cols .rg {
+    padding-left: 4px;
+}
+span.MuiTypography-root-41 {
+    margin-top: 2px;
+}
