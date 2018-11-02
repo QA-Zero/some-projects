@@ -156,7 +156,7 @@ export default class SingleTask extends Component {
 			scrollTop,
 			isScroll
 		} = this.state;
-console.log( isScroll );
+
 		return (
 			<>
 			{
