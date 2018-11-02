@@ -1,4 +1,4 @@
-Add aliases to webpack config files
+1) Add aliases to webpack config files
 ( /node_modules/react-scripts/config — webpack.config.dev.js and webpack.config.prod.js ):
 
 	alias: {
@@ -14,3 +14,5 @@ Add aliases to webpack config files
 		$routes: path.resolve('src/app/routes'),
 		$assets: path.resolve('src/assets')
 	}
+
+2) Make sure that WebStorm uses this config: 'Settings > Languages&Frameworks > Javascript > Webpack'

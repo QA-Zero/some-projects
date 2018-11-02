@@ -1,0 +1,9 @@
+.todoList {
+    width: 750px;
+    height: 400px;
+    background-color: #eae;
+    border: 2px solid #777;
+}
+.todoList .taskWrapper:first-child {
+    padding-top: 0;
+}

@@ -1,0 +1,23 @@
+.actionsBlock {
+    margin-top: 10px;
+}
+.addTaskField {
+    width: 618px;
+    height: 23px;
+    padding: 5px 8px;
+}
+
+.btnAddNew {
+    width: 105px !important;
+    margin: -2px 0 0 10px !important;
+    font-size: 10pt !important;
+    color: #fff !important;
+    background-color: #cd853f !important;
+}
+.btnAddNew:hover {
+    background-color: #dAa520 !important;
+}
+.btnAddNew:disabled {
+    color: #333 !important;
+    background-color: #ccc !important;
+}
