@@ -1,0 +1,4 @@
+export const START_NEW_GAME   = 'START_NEW_GAME';
+export const UPDATE_CELLS     = 'UPDATE_CELLS';
+export const START_ANIMATION  = 'START_ANIMATION';
+export const FINISH_ANIMATION = 'FINISH_ANIMATION';

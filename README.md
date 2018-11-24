@@ -9,7 +9,8 @@ Vanilla Js (codepen):
 
 
 React:
-- [json-parser](https://qa-zero.github.io/some-projects/react/json-parser/prod/index.html)
-- [movies](https://qa-zero.github.io/some-projects/react/movies/prod/)
 - [minesweeper](https://qa-zero.github.io/some-projects/react/minesweeper/prod/)
+- [barley-break](https://qa-zero.github.io/some-projects/react/barley-break/prod/)
 - [todo-list](http://kspase-mailer.zzz.com.ua/)
+- [movies](https://qa-zero.github.io/some-projects/react/movies/prod/)
+- [json-parser](https://qa-zero.github.io/some-projects/react/json-parser/prod/index.html)
