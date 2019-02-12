@@ -1,0 +1,49 @@
+.single-task {
+    width: calc(100% - 10px);
+    height: 60px;
+    line-height: 60px;
+    margin: 0 0 10px 5px;
+    border-radius: .3rem;
+    font-size: 13pt;
+    color: #444;
+    background-color: #cc5;
+    .control {
+        float: left;
+        margin: 0 5px;
+        overflow: hidden;
+        text-align: center;
+    }
+    .email {
+        width: 180px;
+    }
+    .user-name {
+        width: 100px
+    }
+    .task-name {
+        width: 100px
+    }
+    .is-done-block {
+        width: 55px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .is-done-value {
+            width: 45px;
+            padding: 0;
+        }
+    }
+    .edit-task-block {
+        width: 65px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        .edit-task-btn {
+            width: 100% !important;
+            background-color: #aae !important;
+        }
+        .edit-task-btn:hover {
+            background-color: #aea !important;
+            color: #000 !important;
+        }
+    }
+}

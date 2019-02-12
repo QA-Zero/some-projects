@@ -1,0 +1,51 @@
+export default [
+    {
+              id: 1,
+        taskName: 'Task-1',
+        userName: 'Vasya',
+           email: 'vasya@example.com',
+          status: false,
+    },
+    {
+              id: 2,
+        taskName: 'Task-2',
+        userName: 'Kolya',
+           email: 'kolya@example.com',
+          status: true,
+    },
+    {
+              id: 3,
+        taskName: 'Task-3',
+        userName: 'Petya',
+           email: 'petya@example.com',
+          status: false,
+    },
+    {
+              id: 4,
+        taskName: 'Task-4',
+        userName: 'Sasha',
+           email: 'sasha@example.com',
+          status: true,
+    },
+    {
+              id: 5,
+        taskName: 'Task-5',
+        userName: 'Artur',
+           email: 'artur@example.com',
+          status: false,
+    },
+    {
+              id: 6,
+        taskName: 'Task-6',
+        userName: 'Slavik',
+           email: 'slavik@example.com',
+          status: true,
+    },
+    {
+              id: 7,
+        taskName: 'Task-7',
+        userName: 'Ivan',
+           email: 'ivan@example.com',
+          status: false,
+    },
+];
