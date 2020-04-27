@@ -1,0 +1,10 @@
+.main-app {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	height: 100vh; // 2268px;
+	width:  141vh; // 3200px; // 4032px
+	min-width: 1084px;
+}

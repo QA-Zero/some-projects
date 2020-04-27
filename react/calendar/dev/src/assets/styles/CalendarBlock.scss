@@ -1,0 +1,187 @@
+.content-block {
+	height: 93.87vh;
+	width:  100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background-color: #f0f0f7;
+	.calendar-column {
+		height: 100%;
+		width:  107.14vh;
+		.title {
+			height: 9.02vh;
+			width:  100%;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+			font-size: 2.5vh;
+		}
+		.calendar-area {
+			height: 75.84vh;
+			width:  100%;
+			padding: 1.764vh 1.764vh 3.09vh 1.764vh;
+			background-color: #fff;
+			.header {
+				height: 3.3vh;
+				width:  100%;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				.title {
+					height: 100%;
+					font-size: 1.6vh;
+				}
+				.controls {
+					height: 100%;
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-end;
+					align-items: flex-start;
+					.p-button {
+						height: 3.03vh;
+						padding: 0;
+						border: 2px solid #dde0e3;
+						background-color: #fff;
+						color: #222;
+						font-size: 1.2vh;
+						box-shadow: none;
+					}
+					.p-button.active {
+						color: #6f9aff;
+					}
+					.month {
+						width:  7.5vh;
+						border-radius: 5px 0 0 5px;
+					}
+					.week {
+						margin-left: -2px;
+						width:  6.38vh;
+					}
+					.day {
+						margin-left: -2px;
+						width:  5.5vh;
+					}
+					.agenda {
+						margin-left: -2px;
+						width:  6.83vh;
+						border-radius: 0 5px 5px 0;
+					}
+				}
+			}
+			.calendar {
+				height: 74.74vh;
+				width:  100%;
+				.fc-button {
+					background-color: #fff;
+					color: #222;
+					border: 2px solid #dde0e3;
+					font-size: 1.2vh;
+					box-shadow: none;
+				}
+				.fc-button:hover {
+					background-color: #fff;
+					color: #222;
+					border: 2px solid #dde0e3;
+				}
+				.fc-button.active {
+					color: #0068e7;
+				}
+				.fc-today-button {
+					height: 100%;
+					width:  5.95vh;
+				}
+				.fc-prev-button {
+					height: 100%;
+					width:  5.07vh;
+					margin-left: -2px;
+					margin-right: -2px;
+				}
+				.fc-next-button {
+					height: 100%;
+					width:  5.95vh;
+				}
+				.fc-dayGridMonth-view,
+				.fc-dayGridWeek-view {
+					.fc-time {
+						display: none;
+					}
+				}
+				.fc-dayGridDay-view {
+					.fc-content {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						align-items: center;
+					}
+				}
+				.fc-day-header {
+					background-color: #f5f6fa;
+					color: #b5b7c2;
+					border:none;
+					text-transform: uppercase;
+					height: 3.84vh;
+					line-height: 3.84vh;
+				}
+				.fc-center {
+					margin-left: calc(-16.94vh - 8px);
+					h2 {
+						font-size: 1.7vh;
+					}
+				}
+				.fc-bg {
+					tbody {
+						td:not(.fc-past) {
+							cursor: pointer;
+						}
+					}
+					td {
+						border-color: #eff3f6;
+					}
+				}
+				.fc-content-skeleton {
+					tbody {
+						td {
+							cursor: pointer;
+						}
+					}
+					.fc-day-number {
+						margin: 1.85vh 1vh 0 0;
+					}
+					.fc-day-grid-event {
+						height: 2.65vh;
+						line-height: 2.65vh;
+						padding: 0 1.33vh;
+						color: #fff;
+						font-size: 1.0vh;
+					}
+				}
+			}
+		}
+	}
+	.p-dialog-content {
+		height: 40vh;
+		width: 21vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		#float-input-name,
+		#float-input-description,
+		#float-input-date,
+		#float-input-time,
+		#float-input-bg_color,
+		#float-input-font_color {
+			height: 3vh;
+			width: 17vh;
+		}
+	}
+	.p-dialog-footer > div {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

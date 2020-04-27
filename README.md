@@ -15,3 +15,4 @@ React:
 - [movies](https://qa-zero.github.io/some-projects/react/movies/prod/)
 - [task-list](https://qa-zero.github.io/some-projects/react/task-list/prod/)
 - [todo-list](http://kspase-mailer.zzz.com.ua/)
+- [calendar](https://qa-zero.github.io/some-projects/react/calendar/prod/)

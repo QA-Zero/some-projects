@@ -1,0 +1,85 @@
+.top-panel {
+	height: 6.17vh;
+	width:  100%;
+	padding: 0 1.8vh;
+	background-color: #fff;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	.icon {
+		background-size: cover;
+		cursor: pointer;
+	}
+	.search-block {
+		height: 100%;
+		width:  20.28vh;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		.search {
+			height: 1.41vh;
+			width:  1.41vh;
+			background-image: url("../../assets/img/top-panel/search_32.png");
+		}
+		.text {
+			height: 100%;
+			width:  18.1vh;
+			font-size: 1.04vh;
+			color: #70717a;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			align-items: center;
+		}
+	}
+	.user-block {
+		height: 100%;
+		width:  24.7vh;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		.round {
+			height: 1.85vh;
+			width:  1.85vh;
+			background-image: url("../../assets/img/top-panel/round_42.png");
+		}
+		.chat {
+			height: 1.85vh;
+			width:  1.85vh;
+			background-image: url("../../assets/img/top-panel/chat_42.png");
+		}
+		.bell {
+			height: 1.85vh;
+			width:  1.85vh;
+			background-image: url("../../assets/img/top-panel/bell_42.png");
+		}
+		.line {
+			height: 1.41vh;
+			width:  2px;
+			background-color: #eff3f6;
+		}
+		.name {
+			height: 100%;
+			width:  4.85vh;
+			font-size: 1.04vh;
+			color: #70717a;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+		.arrow {
+			height: 0.97vh;
+			width:  0.97vh;
+			background-image: url("../../assets/img/top-panel/arrow_22.png");
+		}
+		.user {
+			height: 3.35vh;
+			width:  3.35vh;
+			background-image: url("../../assets/img/top-panel/user_76.png");
+		}
+	}
+}
