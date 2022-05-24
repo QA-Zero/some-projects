@@ -32,7 +32,7 @@
     "glob-all": "latest",
     "html-webpack-plugin": "^3",
     "mini-css-extract-plugin": "^0",
-    "node-sass": "^4",
+    "node-sass": "^7",
     "npm-run-all": "latest",
     "postcss": "^6",
     "postcss-colormin": "^4",
