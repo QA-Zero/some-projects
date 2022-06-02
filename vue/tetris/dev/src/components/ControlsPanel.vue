@@ -1,5 +1,5 @@
 <template>
-  <div class="controls-panel" :style="cssVars">
+  <div class="controls-panel" :style="css.panel">
     <div class="options">
       <el-select
         v-model="lang.current"
@@ -55,27 +55,27 @@
         <template v-if="states.isUserPause">
           <el-button
             type="primary"
-            class="continue"
+            class="btn continue"
             @click="$emit('continue')"
           >{{ $t('control_panel.continue') }}</el-button>
         </template>
         <template v-else>
           <el-button
             type="primary"
-            class="pause"
+            class="btn pause"
             @click="$emit('pause')"
           >{{ $t('control_panel.pause') }}</el-button>
         </template>
         <el-button
           type="primary"
-          class="finish"
+          class="btn finish"
           @click="$emit('open-finish-dialog')"
         >{{ $t('control_panel.finish') }}</el-button>
       </template>
       <template v-else>
         <el-button
           type="primary"
-          class="start"
+          class="btn start"
           @click="$emit('start')"
         >{{ $t('control_panel.start') }}</el-button>
       </template>
@@ -116,8 +116,8 @@ export default {
     'accelerate',
   ],
   props: {
-    cssVars: {
-      type: Object,
+    controlPanelWidth: {
+      type: Number,
       required: true,
     },
     info: {
@@ -158,6 +158,15 @@ export default {
       },
 
     }
+  },
+  computed: {
+    css() {
+      return {
+        panel: {
+          'width': this.controlPanelWidth + 'px',
+        },
+      }
+    },
   },
   methods: {
     changeLang(val) {
@@ -201,7 +210,6 @@ export default {
 
 .controls-panel {
   height: 100%;
-  width: 200px;
   background-color: #ccc;
   display: flex;
   flex-direction: column;
@@ -332,6 +340,10 @@ export default {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
+    .btn {
+      width: 100px;
+    }
   }
 
   .controls-info {

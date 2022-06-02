@@ -1,14 +1,22 @@
 <template>
-  <div class="app-wrapper" :style="cssWrapper">
+  <div class="app-wrapper" :style="css.wrapper">
     <GameField
-      :cssVars="cssGamePanel"
+      :cellSize="scale.cellSizeCurrent"
+      :cellsCountHeight="cellsCountHeight"
+      :cellsCountWidth="cellsCountWidth"
       :isGame="states.isGame"
       :isPause="states.isConfirmFinishPause || states.isUserPause"
-      :currentFigure="figures.current"
+      :currentFigure="figures.current.list"
       :fieldIndexes="fieldIndexes"
+      :triggerMoveLeft="triggers.moveLeft"
+      :triggerMoveRight="triggers.moveRight"
+      :triggerRotate="triggers.rotate"
+      :triggerAccelerate="triggers.accelerate"
+      @increment-line="incrementLine"
+      @get-new-figure="getNewFigure"
     />
     <ControlsPanel
-      :cssVars="cssControlPanel"
+      :controlPanelWidth="controlPanelWidth"
       :info="info"
       :scale="scale.scaleCurrent"
       :states="states"
@@ -33,22 +41,21 @@
 
 <script>
 
+import figures from '@/services/figure_generator'
 import GameField from './GameField'
 import ControlsPanel from './ControlsPanel'
 import ConfirmFinishDialog from './ConfirmFinishDialog'
-import AngleLeft from "@/assets/icons/png/angle-left.png"
-import AngleRight from "@/assets/icons/png/angle-right.png"
-import Line from "@/assets/icons/png/line.png"
-import Pyramid from "@/assets/icons/png/pyramid.png"
-import Square from "@/assets/icons/png/square.png"
-import StepsLeft from "@/assets/icons/png/steps-left.png"
-import StepsRight from "@/assets/icons/png/steps-right.png"
 
 export default {
   name: 'Main',
   components: { GameField, ControlsPanel, ConfirmFinishDialog },
   data() {
     return {
+      isDialogVisible: false,
+      cellsCountHeight: 20,
+      cellsCountWidth: 10,
+      controlPanelWidth: 250,
+
       info: {
         current: {
           lines: 0,
@@ -60,7 +67,9 @@ export default {
           points: 0,
           level: 0,
         },
+        levelEveryLines: 10,
       },
+
       scale: {
         cellSizeDefault: 40,
         cellSizeCurrent: 40,
@@ -68,109 +77,108 @@ export default {
         scaleCurrent: 3,
         scaleStep: 5,
       },
+
       states: {
         isGame: false,
         isUserPause: false,
         isConfirmFinishPause: false,
       },
-      figures: {
-        all: [
-          {
-            image: AngleLeft,
-          },
-          {
-            image: AngleRight,
-          },
-          {
-            image: Line,
-          },
-          {
-            image: Pyramid,
-          },
-          {
-            image: Square,
-          },
-          {
-            image: StepsLeft,
-          },
-          {
-            image: StepsRight,
-          },
-        ],
-        current: {},
-        next: {},
+
+      triggers: {
+        moveLeft: false,
+        moveRight: false,
+        rotate: false,
+        accelerate: false,
       },
 
       images: {
-        all: [
-          AngleLeft,
-          AngleRight,
-          Line,
-          Pyramid,
-          Square,
-          StepsLeft,
-          StepsRight,
-        ],
+        all: figures.map(figure => figure.image),
         current: '',
         next: '',
       },
-      isDialogVisible: false,
-      cellsCountHeight: 20,
-      cellsCountWidth: 10,
-      rightPanelWidth: 250,
+
+      figures: {
+        all: figures,
+        current: {},
+        next: {},
+      },
     }
   },
   computed: {
-    cssWrapper() {
+    css() {
       return {
-        'height': this.scale.cellSizeCurrent * this.cellsCountHeight + 6 + 'px',
-        'width': this.scale.cellSizeCurrent * this.cellsCountWidth + 6 + this.rightPanelWidth + 'px',
-      }
-    },
-
-    cssGamePanel() {
-      return {
-        cssPanel: {
+        wrapper: {
           'height': this.scale.cellSizeCurrent * this.cellsCountHeight + 6 + 'px',
-          'width': this.scale.cellSizeCurrent * this.cellsCountWidth + 6 + 'px',
+          'width': this.scale.cellSizeCurrent * this.cellsCountWidth + 6 + this.controlPanelWidth + 'px',
         },
-        cssRow: {
-          'height': this.scale.cellSizeCurrent + 'px',
-          'width': this.scale.cellSizeCurrent * this.cellsCountWidth + 6 + 'px',
-        },
-        cssField: {
-          'height': this.scale.cellSizeCurrent + 'px',
-          'width': this.scale.cellSizeCurrent + 'px',
-        },
-      }
-    },
-
-    cssControlPanel() {
-      return {
-        'width': this.rightPanelWidth + 'px',
       }
     },
 
     fieldIndexes() {
-        const field = []
+      const field = []
 
-        for (let rowNum = 0; rowNum < this.cellsCountHeight; rowNum++) {
-          const row = []
+      for (let rowNum = 0; rowNum < this.cellsCountHeight; rowNum++) {
+        const row = []
 
-          for (let columnNum = 0; columnNum < this.cellsCountWidth; columnNum++) {
-            row.push(true)
-          }
-
-          field.push(row)
+        for (let columnNum = 0; columnNum < this.cellsCountWidth; columnNum++) {
+          row.push(true)
         }
 
-        return field
+        field.push(row)
+      }
+
+      return field
     },
   },
   methods: {
+    getRand(min, max) {
+      return Math.floor(min + Math.random() * (max + 1 - min))
+    },
+    
     newScale(val) {
       this.scale.scaleCurrent = val
       this.scale.cellSizeCurrent = this.scale.cellSizeDefault + this.scale.scaleStep * (this.scale.scaleCurrent - this.scale.scaleDefault)
+    },
+
+    incrementLine(lines) {
+      this.info.increment.lines = lines
+      this.info.increment.points = Math.pow(lines, 2)
+
+      this.info.current.lines += this.info.increment.lines
+      this.info.current.points += this.info.increment.points
+
+      setTimeout(
+        () => {
+          this.info.increment.lines = 0
+          this.info.increment.points = 0
+        },
+        3000,
+      )
+
+      if (this.info.current.lines > this.info.current.level * this.info.levelEveryLines) this.incrementLvl()
+    },
+    incrementLvl() {
+      this.info.increment.level = 1
+      this.info.current.level += this.info.increment.level
+
+      setTimeout(
+        () => {
+          this.info.increment.level = 0
+        },
+        3000,
+      )
+    },
+
+    getFigureIndex() {
+      return this.getRand(0, 6)
+    },
+    getStartFigures() {
+      this.figures.current = this.figures.all[this.getFigureIndex()]
+      this.figures.next = this.figures.all[this.getFigureIndex()]
+    },
+    getNewFigure() {
+      this.figures.current = this.figures.next
+      this.figures.next = this.figures.all[this.getFigureIndex()]
     },
 
     openFinishDialog() {
@@ -190,7 +198,7 @@ export default {
       this.info.current.level = 1
       this.states.isGame = true
 
-      this.getFigure()
+      this.getStartFigures()
     },
     finishGame() {
       this.states.isGame = false
@@ -208,55 +216,16 @@ export default {
     },
 
     moveLeft() {
-      console.log( 'Move Left' )
+      this.triggers.moveLeft = !this.triggers.moveLeft
     },
     moveRight() {
-      console.log( 'Move Right' )
+      this.triggers.moveRight = !this.triggers.moveRight
     },
     rotate() {
-      console.log( 'Rotate' )
-
-      this.incrementLinesAndPoints(3)
-      this.incrementLvl()
+      this.triggers.rotate = !this.triggers.rotate
     },
     accelerate() {
-      console.log( 'Accelerate' )
-    },
-
-    incrementLinesAndPoints(lines) {
-      this.info.increment.lines = lines
-      this.info.increment.points = Math.pow(lines, 2)
-
-      this.info.current.lines += this.info.increment.lines
-      this.info.current.points += this.info.increment.points
-
-      setTimeout(
-        () => {
-          this.info.increment.lines = 0
-          this.info.increment.points = 0
-        },
-        3000,
-      )
-    },
-    incrementLvl() {
-      this.info.increment.level = 1
-      this.info.current.level += this.info.increment.level
-
-      setTimeout(
-        () => {
-          this.info.increment.level = 0
-        },
-        3000,
-      )
-    },
-
-    getFigure() {
-      const getRand = (min, max) => {
-        return Math.floor(min + Math.random() * (max + 1 - min))
-      }
-
-      this.figures.current = this.figures.all[getRand(0, 6)]
-      this.figures.next = this.figures.all[getRand(0, 6)]
+      this.triggers.accelerate = !this.triggers.accelerate
     },
   },
 }

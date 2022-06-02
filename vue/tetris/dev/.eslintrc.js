@@ -11,6 +11,10 @@ module.exports = {
     "parser": "@babel/eslint-parser"
   },
   "rules": {
-    "vue/no-mutating-props": "off"
+    "vue/no-v-for-template-key": "off",
+    "vue/no-mutating-props": "off",
+    "vue/no-unused-vars": "off",
+    "no-empty": "off",
+    "no-unused-vars": "off"
   }
 }
