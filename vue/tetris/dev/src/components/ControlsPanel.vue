@@ -28,7 +28,7 @@
     </div>
 
     <div class="next-figure">
-      <img :src="nextImage"/>
+      <img :src="nextImage" alt="" />
     </div>
 
     <div class="progress-info">
@@ -39,15 +39,15 @@
           <div class="info-row level">{{ $t('control_panel.level') }}:</div>
         </div>
         <div class="values">
-          <div class="info-row lines">{{ info.current.lines }}</div>
-          <div class="info-row points">{{ info.current.points }}</div>
-          <div class="info-row level">{{ info.current.level }}</div>
+          <div class="info-row lines">{{ displayInfo.current.lines }}</div>
+          <div class="info-row points">{{ displayInfo.current.points }}</div>
+          <div class="info-row level">{{ displayInfo.current.level }}</div>
         </div>
       </div>
       <div class="increments">
-        <div v-if="info.increment.lines" class="info-row lines">+{{ info.increment.lines }}</div>
-        <div v-if="info.increment.points" class="info-row points">+{{ info.increment.points }}</div>
-        <div v-if="info.increment.level" class="info-row level">+{{ info.increment.level }}</div>
+        <div v-if="displayInfo.increment.lines" class="info-row lines">+{{ displayInfo.increment.lines }}</div>
+        <div v-if="displayInfo.increment.points" class="info-row points">+{{ displayInfo.increment.points }}</div>
+        <div v-if="displayInfo.increment.level" class="info-row level">+{{ displayInfo.increment.level }}</div>
       </div>
     </div>
     <div class="buttons">
@@ -120,7 +120,7 @@ export default {
       type: Number,
       required: true,
     },
-    info: {
+    displayInfo: {
       type: Object,
       required: true,
     },
@@ -170,7 +170,6 @@ export default {
   },
   methods: {
     changeLang(val) {
-      console.log( val )
       this.$locale.change(val)
     },
   },

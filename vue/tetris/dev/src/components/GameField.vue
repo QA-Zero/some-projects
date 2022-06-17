@@ -76,6 +76,10 @@
         type: Array,
         required: true,
       },
+      timeout: {
+        type: Number,
+        required: true,
+      },
       triggerMoveLeft: {
         type: Boolean,
         required: true,
@@ -96,20 +100,20 @@
     data() {
       return {
         figureInfo: {
-          yBottom: 0,
+          yTop: 0,
           xLeft: 0,
-          xRight: 0,
           idx: 0,
+          cells: [],
         },
+        finishedFigures: [],
       }
     },
     computed: {
       css() {
         return {
           figureInfo: {
-            yBottom: this.figureInfo.yBottom + 'px',
-            xLeft: this.figureInfo.xLeft + 'px',
-            xRight: this.figureInfo.xRight + 'px',
+            yTop: 1 + this.figureInfo.yTop * this.cellSize + 'px',
+            xLeft: 1 + this.figureInfo.xLeft * this.cellSize + 'px',
           },
           cellSize: {
             'height': this.cellSize + 'px',
@@ -129,48 +133,157 @@
       activeFigure() {
         return this.currentFigure ? this.currentFigure[this.figureInfo.idx] : []
       },
+
+      cellsBase() {
+        const result = []
+        const height = this.cellsCountHeight
+        const width = this.cellsCountWidth
+
+        for (let yTop = 0; yTop < height; yTop++) {
+          result.push({
+            yTop,
+            xLeft: -1,
+          })
+          result.push({
+            yTop,
+            xLeft: width,
+          })
+        }
+        for (let xLeft = 0; xLeft < width; xLeft++) {
+          result.push({
+            yTop: height,
+            xLeft,
+          })
+        }
+
+        return result
+      },
     },
     methods: {
       updateYStart() {
-        this.figureInfo.yBottom = (
-          this.activeFigure.length
-            ? 1 - this.activeFigure.length * this.cellSize
-            : 0
-        )
+        this.figureInfo.yTop = 0 - this.activeFigure.length
       },
       updateXStart() {
         this.figureInfo.xLeft = (
           this.activeFigure.length
-            ? 1 + Math.floor((this.cellsCountWidth - this.activeFigure[0].length) / 2) * this.cellSize
+            ? Math.floor((this.cellsCountWidth - this.activeFigure[0].length) / 2)
             : 0
         )
       },
+      updateFigureCells() {
+        this.figureInfo.cells = this.activeFigure.map(
+          (row, rowIdx) => row.map((cell, cellIdx) => (
+            cell.length
+              ? {
+                yTop: this.figureInfo.yTop + rowIdx,
+                xLeft: this.figureInfo.xLeft + cellIdx,
+              }
+              : null
+          )).filter(cell => cell)
+        )
+      },
+
+      initFinishedFigures() {
+        this.finishedFigures = this.cellsBase
+      },
 
       tryMoveLeft() {
-        const isActionPossible = () => {
-          return true
-        }
+        const isActionPossible = (() => {
+          const firstCellsInFigureRows = this.figureInfo.cells.map(row => row[0])
+          const finishedCellsOnFigureLines = (
+            this.finishedFigures
+              .filter(cell1 => firstCellsInFigureRows.map(cell2 => cell2.yTop).includes(cell1.yTop))
+              .filter(cell1 => cell1.xLeft < firstCellsInFigureRows.find(cell2 => cell2.yTop === cell1.yTop).xLeft)
+          )
+
+          return !(
+            firstCellsInFigureRows
+              .map(cell1 => ({
+                currentMinXLeft: cell1.xLeft,
+                finishedMaxXLeft: Math.max.apply(
+                  Math,
+                  finishedCellsOnFigureLines.filter(cell2 => cell2.yTop === cell1.yTop).map(cell3 => cell3.xLeft)
+                ),
+              }))
+              .find(cell => cell.currentMinXLeft - 1 === cell.finishedMaxXLeft)
+          )
+        })()
 
         if (isActionPossible) {
-          this.figureInfo.xLeft = this.figureInfo.xLeft - this.cellSize
-          this.figureInfo.xRight = this.figureInfo.xRight - this.cellSize
+          this.figureInfo.xLeft = this.figureInfo.xLeft - 1
+          this.updateFigureCells()
+
+          console.dir( this.figureInfo )
+          console.log( '----------' )
         }
       },
       tryMoveRight() {
-        const isActionPossible = () => {
-          return true
-        }
+        const isActionPossible = (() => {
+          const lastCellsInFigureRows = this.figureInfo.cells.map(row => row[row.length - 1])
+          const finishedCellsOnFigureLines = (
+            this.finishedFigures
+              .filter(cell1 => lastCellsInFigureRows.map(cell2 => cell2.yTop).includes(cell1.yTop))
+              .filter(cell1 => cell1.xLeft > lastCellsInFigureRows.find(cell2 => cell2.yTop === cell1.yTop).xLeft)
+          )
+
+          return !(
+            lastCellsInFigureRows
+              .map(cell1 => ({
+                currentMaxXLeft: cell1.xLeft,
+                finishedMinXLeft: Math.min.apply(
+                  Math,
+                  finishedCellsOnFigureLines.filter(cell2 => cell2.yTop === cell1.yTop).map(cell3 => cell3.xLeft)
+                ),
+              }))
+              .find(cell => cell.currentMaxXLeft + 1 === cell.finishedMinXLeft)
+          )
+        })()
 
         if (isActionPossible) {
-          this.figureInfo.xLeft = this.figureInfo.xLeft + this.cellSize
-          this.figureInfo.xRight = this.figureInfo.xRight + this.cellSize
+          this.figureInfo.xLeft = this.figureInfo.xLeft + 1
+          this.updateFigureCells()
+
+          console.dir( this.figureInfo )
+          console.log( '----------' )
+        }
+      },
+      tryAccelerate() {
+        const isActionPossible = (() => {
+          const lastCellsInFigureColumns = this.figureInfo.cells[this.figureInfo.cells.length - 1]
+          const finishedCellsOnFigureColumns = (
+            this.finishedFigures
+              .filter(cell1 => lastCellsInFigureColumns.map(cell2 => cell2.xLeft).includes(cell1.xLeft))
+              .filter(cell1 => cell1.yTop > lastCellsInFigureColumns.find(cell2 => cell2.xLeft === cell1.xLeft).yTop)
+          )
+
+          return !(
+            lastCellsInFigureColumns
+              .map(cell1 => ({
+                currentMaxYTop: cell1.yTop,
+                finishedMinYTop: Math.min.apply(
+                  Math,
+                  finishedCellsOnFigureColumns.filter(cell2 => cell2.xLeft === cell1.xLeft).map(cell3 => cell3.yTop)
+                ),
+              }))
+              .find(cell => cell.currentMaxYTop + 1 === cell.finishedMinYTop)
+          )
+        })()
+
+        if (isActionPossible) {
+          console.log( 'Accelerate' )
+
+          this.figureInfo.yTop = this.figureInfo.yTop + 1
+          this.updateFigureCells()
+
+          console.dir( this.figureInfo )
+          console.log( '----------' )
         }
       },
       tryRotate() {
-        if (this.currentFigure.length > 1) {
-          const isActionPossible = () => {
+        if (this.currentFigure && this.currentFigure.length > 1) {
+          const isActionPossible = (() => {
             return true
-          }
+          })()
 
           if (isActionPossible) {
             this.figureInfo.idx = (
@@ -178,27 +291,25 @@
                 ? 0
                 : this.figureInfo.idx + 1
             )
+            this.updateFigureCells()
+
+            console.dir( this.figureInfo )
+            console.log( '----------' )
           }
         }
       },
-      tryAccelerate() {
-        const isActionPossible = () => {
-          return true
-        }
-
-        if (isActionPossible) console.log( 'Accelerate' )
-      },
     },
     watch: {
+      isGame(val) {
+        if (!val) this.figureInfo.idx = 0
+      },
+
       currentFigure() {
         this.updateYStart()
         this.updateXStart()
+        this.updateFigureCells()
+        this.initFinishedFigures()
       },
-      cellSize() {
-        this.updateYStart()
-        this.updateXStart()
-      },
-
 
       triggerMoveLeft() {
         this.tryMoveLeft()
@@ -243,7 +354,7 @@
 
   .figure-wrapper {
     position: absolute;
-    top: v-bind('css.figureInfo.yBottom');
+    top: v-bind('css.figureInfo.yTop');
     left: v-bind('css.figureInfo.xLeft');
 
     .row-figure {
