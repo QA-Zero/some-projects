@@ -7,7 +7,7 @@
         "axios": "^0.18.0",
         "connected-react-router": "^4.4.1",
         "history": "^4.7.2",
-        "jsonwebtoken": "^8.3.0",
+        "jsonwebtoken": "^9.0.0",
         "jwt-simple": "^0.5.1",
         "query-string": "^6.1.0",
         "react": "^16.4.1",
